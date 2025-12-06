@@ -1,6 +1,6 @@
 import { useStore } from "@/lib/mock-store";
 import { Link, useLocation } from "wouter";
-import { Trash2, Plus, Minus, ArrowRight, CreditCard } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowRight, ShoppingCart, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
 import { Separator } from "@/components/ui/separator";

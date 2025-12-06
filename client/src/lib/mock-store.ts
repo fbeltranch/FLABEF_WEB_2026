@@ -45,7 +45,16 @@ interface StoreState {
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   placeOrder: (userId: string, address: string) => Promise<boolean>;
+  
+  // Admin Actions
   addProduct: (product: Product) => void;
+  updateProduct: (id: string, product: Partial<Product>) => void;
+  deleteProduct: (id: string) => void;
+  
+  addCategory: (category: Category) => void;
+  deleteCategory: (id: string) => void;
+  
+  updateOrderStatus: (orderId: string, status: Order['status']) => void;
 }
 
 // Initial Data
@@ -143,7 +152,35 @@ export const useStore = create<StoreState>()(
       },
       
       addProduct: (product) => {
-        set(state => ({ products: [...state.products, product] }));
+        set(state => ({ products: [product, ...state.products] }));
+      },
+
+      updateProduct: (id, updates) => {
+        set(state => ({
+          products: state.products.map(p => p.id === id ? { ...p, ...updates } : p)
+        }));
+      },
+
+      deleteProduct: (id) => {
+        set(state => ({
+          products: state.products.filter(p => p.id !== id)
+        }));
+      },
+
+      addCategory: (category) => {
+        set(state => ({ categories: [...state.categories, category] }));
+      },
+
+      deleteCategory: (id) => {
+        set(state => ({
+          categories: state.categories.filter(c => c.id !== id)
+        }));
+      },
+
+      updateOrderStatus: (orderId, status) => {
+        set(state => ({
+          orders: state.orders.map(o => o.id === orderId ? { ...o, status } : o)
+        }));
       }
     }),
     {
