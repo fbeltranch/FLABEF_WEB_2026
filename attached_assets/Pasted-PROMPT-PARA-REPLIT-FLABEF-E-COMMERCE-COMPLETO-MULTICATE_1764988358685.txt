@@ -1,0 +1,330 @@
+PROMPT PARA REPLIT – FLABEF (E-COMMERCE COMPLETO MULTICATEGORÍA + SISTEMA AVANZADO DE USUARIOS)
+
+Quiero que desarrolles FLABEF, un E-COMMERCE COMPLETO MULTICATEGORÍA, con gestión de productos, carrito, pedidos, checkout, panel de administración y sistema avanzado de autenticación y recuperación.
+
+Usa el siguiente documento como especificación oficial del proyecto.
+
+🛒 1. FLABEF ES UN E-COMMERCE COMPLETO MULTICATEGORÍA
+
+El sistema debe incluir todas estas categorías:
+
+CATEGORÍAS PRINCIPALES:
+
+MODA
+
+TECNOLOGÍA
+
+CELULARES Y ACCESORIOS
+
+ELECTROHOGAR
+
+COMIDAS
+
+SERVICIOS INFORMÁTICOS (IT)
+
+HOGAR Y DECORACIÓN
+
+SALUD Y BELLEZA
+
+MASCOTAS
+
+VIDEOJUEGOS
+
+DEPORTES
+
+NIÑOS Y BEBÉS
+
+Y debe permitir agregar más categorías dinámicamente desde el panel administrador.
+
+FUNCIONALIDADES ADICIONALES DEL E-COMMERCE
+
+Home con banners y categorías
+
+Catálogo con filtros (categoría, precio, relevancia)
+
+Detalle de producto
+
+Carrito funcional
+
+Checkout con dirección obligatoria
+
+Métodos de pago integrables (placeholder)
+
+Gestión de pedidos
+
+Opiniones/valoraciones (opcional)
+
+Panel cliente: mis datos, mis pedidos
+
+Panel admin: gestión completa del e-commerce
+
+🔐 2. Sistema de Registro de Usuarios
+
+Campos obligatorios:
+
+Nombre completo
+
+DNI peruano (8 dígitos, único y validado)
+
+Email único
+
+Teléfono/WhatsApp
+
+Contraseña (mínimo 8 caracteres con validación fuerte)
+
+Confirmación de contraseña
+
+Dirección (opcional, pero obligatoria en checkout)
+
+Validaciones:
+
+Email único
+
+DNI único
+
+Teléfono válido
+
+Contraseña segura
+
+🔁 3. Sistema Avanzado de Recuperación (3 Métodos)
+
+Implementar:
+
+⭐ método 1: DNI + Email (principal)
+
+Solicita DNI + Email
+
+Valida coincidencia
+
+Envia:
+
+Código OTP 6 dígitos
+
+Link de recuperación
+
+IP + hora
+
+Crea nueva contraseña
+
+✉ Método 2: Solo Email
+
+Ingresa email
+
+Recibe código + link
+
+Nueva contraseña
+
+🆔 Método 3: Solo DNI (backup)
+
+Ingresa DNI
+
+Muestra email oculto
+
+Confirma y se envía OTP al email real
+
+🛡️ 4. Máxima Seguridad
+
+Rate limiting
+
+Token de un solo uso
+
+OTP expira en 15 min
+
+5 intentos → bloqueo 30 min
+
+Logs completos
+
+Notificación de cambio de contraseña
+
+Validación estricta de DNI
+
+Captcha opcional
+
+Honeypot
+
+Encriptación de datos sensibles
+
+Notificación de inicio en nuevo dispositivo
+
+👨‍💼 5. Sistema de Roles
+
+Niveles:
+
+⭐ Super Admin
+
+Acceso total
+
+Recuperación con 2FA opcional
+
+Pregunta de seguridad
+
+Notificación a super admins
+
+Ver logs completos
+
+Aprobación para admins
+
+Admin Gestor
+Admin Básico
+
+Acceso limitado
+
+Recuperación por DNI + Email
+
+Notificación al Super Admin
+
+🔐 6. Panel de Seguridad del Super Admin
+
+Opciones:
+
+Ver intentos de recuperación
+
+Usuarios bloqueados / desbloquear
+
+Resetear contraseñas
+
+Configurar:
+
+expiración de OTP
+
+intentos permitidos
+
+tiempo de bloqueo
+
+activar/desactivar 2FA
+
+Historial completo de eventos
+
+Accesos sospechosos
+
+📧 7. Emails Automáticos (Templates HTML)
+
+Crear estos emails:
+
+Bienvenida
+
+Recuperación (OTP + link)
+
+Confirmación de cambio
+
+Alerta de seguridad para admin
+
+Compatibles con:
+
+Resend (preferido)
+
+SendGrid
+
+Nodemailer SMTP
+
+🗄️ 8. Base de Datos Completa
+
+Tablas mínimas:
+
+users
+password_reset_tokens
+security_logs
+active_sessions
+products
+
+id
+
+nombre
+
+descripción
+
+categoría_id
+
+imágenes
+
+precio
+
+stock
+
+fecha_creación
+
+categories
+
+id
+
+nombre (ej.: Moda, Tecnología, etc.)
+
+slug
+
+orders
+order_items
+🎨 9. Interfaces UI
+
+Crear pantallas:
+
+Cliente:
+
+Home
+
+Categorías
+
+Listado de productos
+
+Detalle de producto
+
+Carrito
+
+Checkout
+
+Confirmación de compra
+
+Perfil del cliente
+
+Mis pedidos
+
+Recuperación de contraseña:
+
+“¿Olvidaste tu contraseña?”
+
+Formulario por DNI/Email
+
+Formulario por Email
+
+Formulario por DNI
+
+Pantalla OTP
+
+Nueva contraseña
+
+Pantalla de éxito
+
+Panel Admin:
+
+Dashboard
+
+Gestión de productos
+
+Gestión de categorías
+
+Gestión de clientes
+
+Gestión de pedidos
+
+Seguridad (solo Super Admin)
+
+📱 10. Recuperación por WhatsApp (Opcional)
+
+Cliente contacta soporte
+
+Admin valida identidad
+
+Super Admin genera link temporal válido 30 min
+
+🎯 OBJETIVO FINAL
+
+En Replit, generar:
+
+✔ Backend completo
+✔ Frontend completo
+✔ Base de datos
+✔ APIs REST
+✔ Gestión de productos, categorías, pedidos
+✔ Autenticación avanzada
+✔ Recuperación 3 métodos
+✔ Panel admin completo
+✔ Seguridad empresarial
