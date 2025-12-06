@@ -1,0 +1,343 @@
+PROMPT PARA REPLIT – CREAR ECOMMERCE COMPLETO FLABEF CON SISTEMA AVANZADO DE AUTENTICACIÓN
+
+Quiero que generes un E-commerce completo llamado FLABEF, programado en [ESPECIFICA TU STACK: Node.js + Express | Next.js | React + API | Python Django | Laravel | etc.], con las siguientes características obligatorias.
+
+🛒 1. Módulo de Registro
+
+Crear un sistema de registro con estos campos obligatorios:
+
+Nombre completo
+
+DNI peruano (8 dígitos, único, validado)
+
+Email único y verificado
+
+Teléfono o WhatsApp
+
+Contraseña segura (mínimo 8 caracteres, mayúsculas, minúsculas, números)
+
+Confirmar contraseña
+
+Dirección (opcional aquí, obligatorio al comprar)
+
+Validaciones:
+
+DNI único
+
+Email único
+
+Contraseña segura
+
+Teléfono con formato válido
+
+🔐 2. Sistema Completo de Recuperación de Contraseña (3 Métodos)
+
+Implementar tres métodos:
+
+🔸 Método 1: DNI + Email (Principal)
+
+Flujo exacto:
+
+Usuario hace clic en “¿Olvidaste tu contraseña?”
+
+Ingresa DNI + email
+
+Sistema valida coincidencia
+
+Envía email con:
+
+Código OTP de 6 dígitos
+
+Link de recuperación (1 solo uso)
+
+IP, fecha y hora
+
+Usuario ingresa código o abre link
+
+Crea nueva contraseña
+
+Confirmación + redirección
+
+🔸 Método 2: Solo Email
+
+Ingresa email
+
+Recibe código + link
+
+Ingresa código
+
+Establece nueva contraseña
+
+🔸 Método 3: Solo DNI (Backup)
+
+Ingresa DNI
+
+Sistema muestra email enmascarado
+
+Usuario confirma
+
+Envía el código al email real
+
+🛡️ 3. Seguridad del Sistema
+
+Implementar:
+
+Rate limiting: máximo 3 intentos por hora
+
+Códigos OTP que expiran en 15 minutos
+
+Tokens de recuperación de un solo uso
+
+Detección de IP sospechosas
+
+Historial de cambios de contraseña
+
+Email cuando se cambia la contraseña
+
+Bloqueo temporal después de 5 intentos fallidos
+
+Validación estricta del DNI
+
+👨‍💼 4. Sistema de Recuperación para Administradores (Roles)
+
+Tres niveles:
+
+⭐ SUPER ADMIN (Nivel 1)
+
+Recuperación por DNI + Email
+
+Pregunta de seguridad adicional
+
+2FA opcional
+
+Notificación a todos los Super Admins
+
+Opción de verificación por WhatsApp
+
+ADMIN GESTOR (Nivel 2)
+ADMIN BÁSICO (Nivel 3)
+
+Recuperación por DNI + Email
+
+Notificación al Super Admin
+
+Puede requerir aprobación del Super Admin
+
+🔒 5. Panel de Seguridad del Super Admin
+
+Debe incluir:
+
+Lista de todos los intentos de recuperación con:
+
+Fecha
+
+IP
+
+Ubicación
+
+Resultado
+
+Control de usuarios bloqueados
+
+Resetear contraseña manualmente
+
+Configurar políticas de seguridad:
+
+Expiración de OTP
+
+Intentos permitidos
+
+Tiempo de bloqueo
+
+Activar/desactivar 2FA
+
+Logs de seguridad completos
+
+Registros de accesos sospechosos
+
+📧 6. Emails Automáticos (Templates HTML)
+
+Crear plantillas completas:
+
+Email de bienvenida
+
+Email de recuperación (OTP + link)
+
+Confirmación de cambio de contraseña
+
+Alerta de seguridad para administradores
+
+Servicios aceptados:
+
+Resend (preferido)
+
+SendGrid
+
+Nodemailer + Gmail SMTP
+
+🗄️ 7. Base de Datos (Tablas Exactas)
+
+Agregar estas tablas:
+
+users
+
+id
+
+nombre_completo
+
+dni
+
+email
+
+telefono
+
+password_hash
+
+direccion
+
+rol (cliente, admin_basico, admin_gestor, super_admin)
+
+activo
+
+bloqueado
+
+intentos_fallidos
+
+ultimo_intento
+
+pregunta_seguridad
+
+respuesta_seguridad_hash
+
+fecha_registro
+
+ultima_conexion
+
+password_reset_tokens
+
+user_id
+
+token
+
+código
+
+expira_en
+
+IP
+
+usado
+
+fecha_creación
+
+security_logs
+
+user_id
+
+acción
+
+IP
+
+éxito / fallo
+
+user_agent
+
+fecha
+
+active_sessions
+
+user_id
+
+token
+
+IP
+
+expiración
+
+🎨 8. Interfaz UI de Recuperación
+
+Crear pantallas limpias y modernas:
+
+Pantalla principal “¿Olvidaste tu contraseña?”
+
+Formulario de recuperación
+
+Pantalla OTP (código de 6 dígitos con contador regresivo)
+
+Crear nueva contraseña
+
+Confirmación con animación de éxito
+
+Requisitos:
+
+Validación en tiempo real
+
+Indicador de seguridad de contraseña
+
+Botón mostrar/ocultar contraseña
+
+Reenviar código después de 1 minuto
+
+📱 9. Recuperación por WhatsApp (Opcional)
+
+Flujo alternativo:
+
+Usuario contacta soporte
+
+Admin verifica datos
+
+Super Admin genera link temporal
+
+Link válido por 30 minutos
+
+🚀 10. Flujo Completo
+CLIENTE:
+
+Registro → Email bienvenida → Login
+Olvida contraseña → Ingresa datos → Recupera → Login
+
+ADMIN:
+
+Creado por Super Admin → Cambia contraseña obligatoria
+Olvida contraseña → Validación extra → Notificación → Recupera
+
+✨ 11. Extras de Seguridad Obligatorios
+
+Captcha
+
+Honeypot anti-bots
+
+Encriptación de DNI y teléfono
+
+Cumplimiento GDPR
+
+Términos y condiciones con checkbox
+
+Doble verificación de email opcional
+
+JWT para sesiones
+
+Logout por inactividad (30 min)
+
+Notificación cuando inicia sesión desde nuevo dispositivo
+
+🎯 OBJETIVO FINAL
+
+Generar en Replit:
+
+Backend completo
+
+Frontend completo
+
+Base de datos
+
+Endpoints de la API
+
+Sistema de correo
+
+Panel de administración
+
+UI para clientes
+
+Lógica de seguridad avanzada
+
+Documentación
