@@ -41,69 +41,69 @@
   --color-popover-foreground: hsl(var(--popover-foreground));
 }
 
-/* TRUST & CLARITY THEME */
+/* RETAIL THEME (Saga Falabella Inspired) */
 :root {
-  /* Deep Navy & Vibrant Teal */
-  --primary: 215 100% 18%; /* #002b5c Deep Navy */
+  /* Retail Green */
+  --primary: 84 81% 41%; /* #8CBF14 Vibrant Green */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 170 100% 35%; /* #00b386 Teal */
+  /* Stark Black/Dark for contrast */
+  --secondary: 0 0% 9%;
   --secondary-foreground: 0 0% 100%;
   
-  --background: 210 40% 98%; /* Slight blue-grey tint */
-  --foreground: 215 28% 17%;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
   
   --card: 0 0% 100%;
-  --card-foreground: 215 28% 17%;
+  --card-foreground: 0 0% 10%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 215 28% 17%;
+  --popover-foreground: 0 0% 10%;
   
-  --muted: 210 20% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
   
-  --accent: 210 20% 96%;
-  --accent-foreground: 215 100% 18%;
+  --accent: 84 81% 96%; /* Light green tint */
+  --accent-foreground: 84 81% 30%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 215 100% 18%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 84 81% 41%;
 
-  --radius: 0.5rem;
+  --radius: 0.3rem; /* Sharper corners for retail */
 }
 
 .dark {
-  /* Dark Mode variant - Deep Slate & Neon Teal */
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
+  --background: 0 0% 10%;
+  --foreground: 0 0% 98%;
   
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 98%;
   
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 98%;
   
-  --primary: 170 100% 35%; /* Teal becomes primary in dark mode for pop */
+  --primary: 84 81% 41%;
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 98%;
   
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 0 0% 60%;
   
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 84 81% 15%;
+  --accent-foreground: 0 0% 98%;
   
   --destructive: 0 62% 30%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 0% 98%;
   
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 170 100% 35%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 84 81% 41%;
 }
 
 @layer base {
@@ -120,9 +120,6 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
-  }
-  .text-balance {
-    text-wrap: balance;
+    @apply bg-white/90 backdrop-blur-sm border border-gray-100 shadow-lg;
   }
 }

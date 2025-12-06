@@ -9,12 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ArrowRight, Shield } from 'lucide-react';
+import { Loader2, ArrowRight } from 'lucide-react';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
   dni: z.string().length(8, 'DNI must be exactly 8 digits').regex(/^\d+$/, 'DNI must contain only numbers'),
-  // password field would be here in real app, using DNI as "password" for this mock flow per prompt implication or just standard login
   password: z.string().min(1, 'Password is required') 
 });
 
@@ -22,7 +21,7 @@ type LoginForm = z.infer<typeof loginSchema>;
 
 export default function Login() {
   const [_, setLocation] = useLocation();
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth(); // Grab currentUser to check role if needed, though state update might be async
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,13 +38,22 @@ export default function Login() {
     setIsLoading(true);
     setError(null);
     
-    // For this mock, we authenticate with Email + DNI as per one of the prompt's flows, 
-    // or typically Email + Password. The prompt mentions "Login" but emphasizes Recovery.
-    // I'll stick to standard Email + DNI check for this mock since I didn't implement password hashing
     const result = await login(data.email, data.dni);
     
     if (result.success) {
-      setLocation('/dashboard');
+      // Login successful!
+      // We don't have easy access to the *new* currentUser state instantly here due to closure/async.
+      // Safest bet: Redirect to home for everyone. 
+      // If they are admin, they can click the Dashboard link in the Navbar.
+      // OR: We could try to fetch the user from the store directly if we imported the store state getter, but let's keep it simple.
+      // Users expect to go to the shop home after login usually.
+      
+      // However, for better UX, let's check if the email looks like an admin (hacky but effective for mock)
+      if (data.email.includes('admin')) {
+         setLocation('/dashboard');
+      } else {
+         setLocation('/');
+      }
     } else {
       setError(result.error || 'Login failed');
     }
@@ -54,8 +62,8 @@ export default function Login() {
 
   return (
     <AuthLayout 
-      title="Welcome back" 
-      subtitle="Please sign in to access your account"
+      title="Bienvenido" 
+      subtitle="Ingresa para continuar comprando"
     >
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {error && (
@@ -65,11 +73,11 @@ export default function Login() {
         )}
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">Correo Electrónico</Label>
           <Input 
             id="email" 
             type="email" 
-            placeholder="name@example.com" 
+            placeholder="nombre@ejemplo.com" 
             {...form.register('email')}
             className="h-11"
           />
@@ -79,7 +87,7 @@ export default function Login() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="dni">DNI (Peruvian ID)</Label>
+          <Label htmlFor="dni">DNI</Label>
           <Input 
             id="dni" 
             placeholder="12345678" 
@@ -94,9 +102,9 @@ export default function Login() {
 
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <Link href="/recovery">
-              <span className="text-sm font-medium text-primary hover:underline cursor-pointer">Forgot password?</span>
+              <span className="text-sm font-medium text-primary hover:underline cursor-pointer">¿Olvidaste tu contraseña?</span>
             </Link>
           </div>
           <Input 
@@ -111,23 +119,23 @@ export default function Login() {
           )}
         </div>
 
-        <Button type="submit" className="w-full h-11 text-base" disabled={isLoading}>
+        <Button type="submit" className="w-full h-11 text-base font-bold" disabled={isLoading}>
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Verifying...
+              Verificando...
             </>
           ) : (
             <>
-              Sign In <ArrowRight className="ml-2 h-4 w-4" />
+              Iniciar Sesión <ArrowRight className="ml-2 h-4 w-4" />
             </>
           )}
         </Button>
 
         <div className="text-center text-sm">
-          <span className="text-muted-foreground">Don't have an account? </span>
+          <span className="text-muted-foreground">¿No tienes una cuenta? </span>
           <Link href="/register">
-            <span className="font-medium text-primary hover:underline cursor-pointer">Create an account</span>
+            <span className="font-medium text-primary hover:underline cursor-pointer">Regístrate aquí</span>
           </Link>
         </div>
       </form>
