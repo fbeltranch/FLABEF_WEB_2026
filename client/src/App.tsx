@@ -14,6 +14,7 @@ import Recovery from "@/pages/auth/Recovery";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminPanel from "@/pages/admin/AdminPanel";
 import AdminEntry from "@/pages/admin/AdminEntry";
+import PagesManager from "@/pages/admin/PagesManager";
 import Home from "@/pages/Home";
 
 // Store Pages
@@ -40,7 +41,10 @@ function Router() {
       <Route path="/profile" component={UserProfile} />
       <Route path="/dashboard" component={AdminDashboard} />
       <Route path="/admin" component={AdminPanel} />
+      <Route path="/admin/pages" component={PagesManager} />
       <Route path="/admin-secret-2024" component={AdminEntry} />
+
+      <Route path="/page/:slug" component={require('./pages/static/Page').default} />
       
       <Route component={NotFound} />
     </Switch>

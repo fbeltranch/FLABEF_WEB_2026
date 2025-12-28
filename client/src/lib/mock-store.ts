@@ -95,6 +95,11 @@ interface StoreState {
   }[];
   flashSales: FlashSale[];
   
+  // Static pages CMS
+  pages: Record<string, { slug: string; title: string; content: string }>;
+  updatePage: (slug: string, page: { title: string; content: string }) => void;
+  deletePage: (slug: string) => void;
+
   // Actions
   addToCart: (product: Product, selectedAttributes?: Record<string,string>, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
@@ -472,6 +477,23 @@ export const useStore = create<StoreState>()(
           active: true
         }
       ],
+
+      // Static pages that can be edited from the admin panel (simple CMS)
+      pages: {
+        cookies: { slug: 'cookies', title: 'Política de Cookies', content: 'Aquí puedes editar la Política de Cookies desde el panel de administración.' },
+        sitemap: { slug: 'sitemap', title: 'Mapa del Sitio', content: 'Mapa del sitio - se puede editar desde la administración.' },
+        security: { slug: 'security', title: 'Seguridad', content: 'Información sobre seguridad y prácticas de la tienda.' }
+      },
+      updatePage: (slug: string, page: { title: string; content: string }) => {
+        set(state => ({ pages: { ...state.pages, [slug]: { slug, title: page.title, content: page.content } } }));
+      },
+      deletePage: (slug: string) => {
+        set(state => {
+          const next = { ...state.pages } as Record<string, any>;
+          delete next[slug];
+          return { pages: next };
+        });
+      },
 
       addToCart: (product, selectedAttributes, quantity = 1) => {
         const { cart } = get();

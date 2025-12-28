@@ -473,6 +473,9 @@ export default function AdminPanel() {
             <Button variant="outline" onClick={() => setLocation("/")}>
               <Home className="mr-2 h-4 w-4" /> Ir al Sitio
             </Button>
+            <Button variant="default" size="sm" onClick={() => setLocation('/admin/pages') }>
+              Páginas
+            </Button>
             <Button variant="destructive" onClick={handleLogout}>
               <LogOut className="mr-2 h-4 w-4" /> Salir
             </Button>

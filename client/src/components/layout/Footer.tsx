@@ -140,13 +140,13 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>&copy; {currentYear} FLABEF Premium E-Commerce. Todos los derechos reservados.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-lime-400 transition-colors">
+              <a href="/page/cookies" className="hover:text-lime-400 transition-colors">
               Política de Cookies
             </a>
-            <a href="#" className="hover:text-lime-400 transition-colors">
+            <a href="/page/sitemap" className="hover:text-lime-400 transition-colors">
               Mapa del Sitio
             </a>
-            <a href="#" className="hover:text-lime-400 transition-colors">
+            <a href="/page/security" className="hover:text-lime-400 transition-colors">
               Seguridad
             </a>
           </div>

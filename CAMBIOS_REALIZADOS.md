@@ -169,6 +169,12 @@ Yape ✨
 - ✅ Mejorado: Limpieza del overlay y cierre en modo de pruebas para evitar logout involuntario durante tests.
 - 📝 Nota técnica: Se añadió una descarga simulada (Blob PDF mínimo) en `client/src/components/InvoicePrintable.tsx` cuando `(window as any).__FLABEF_TESTING__ === true` para generar eventos `download` en Playwright.
 
+### ✨ Nuevo: CMS de Páginas (Administración)
+
+- Se añadió un gestor de páginas estáticas (`/admin/pages`) para editar políticas y páginas informativas desde el panel de administración.
+- Se añadió un botón de acceso rápido **Páginas** en el encabezado del `Panel de Administración` para abrir el gestor.
+- Los cambios se reflejan inmediatamente en las rutas públicas: `/page/cookies`, `/page/sitemap`, `/page/security`.
+
 ## 🚀 Próximos Pasos
 
 Para una implementación aún más completa:

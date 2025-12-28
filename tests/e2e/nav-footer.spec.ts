@@ -37,13 +37,23 @@ test('navbar and footer basic interactions', async ({ page }) => {
   expect(phoneHref?.startsWith('tel:')).toBeTruthy();
   expect(mailHref?.startsWith('mailto:')).toBeTruthy();
 
-  // Footer small links (Política de Cookies / Mapa del Sitio) are clickable and do not navigate away (href="#")
-  const smallLinks = page.locator('footer a:has-text("Política de Cookies"), footer a:has-text("Mapa del Sitio"), footer a:has-text("Seguridad")');
-  const count = await smallLinks.count();
-  for (let i = 0; i < count; i++) {
-    const l = smallLinks.nth(i);
-    await l.click();
-  }
+  // Footer small links should navigate to editable static pages under /page/:slug
+  const cookieLink = page.locator('footer a[href="/page/cookies"]');
+  const sitemapLink = page.locator('footer a[href="/page/sitemap"]');
+  const securityLink = page.locator('footer a[href="/page/security"]');
+  await expect(cookieLink).toBeVisible();
+  await expect(sitemapLink).toBeVisible();
+  await expect(securityLink).toBeVisible();
+
+  await cookieLink.click();
+  await expect(page).toHaveURL(/\/page\/cookies/);
+  await page.goBack();
+  await sitemapLink.click();
+  await expect(page).toHaveURL(/\/page\/sitemap/);
+  await page.goBack();
+  await securityLink.click();
+  await expect(page).toHaveURL(/\/page\/security/);
+  await page.goBack();
 
   // Hamburger menu: open and click first category (if exists)
   const menuBtn = page.locator('button[title="Abrir menú"]');
