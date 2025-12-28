@@ -56,6 +56,8 @@ export default function Register() {
       dni: data.dni,
       email: data.email,
       phone: data.phone,
+      password: data.password,
+      documentType: 'DNI'
     });
     
     if (result.success) {

@@ -137,3 +137,43 @@ export const insertOrderSchema = createInsertSchema(orders, {
 
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type Order = typeof orders.$inferSelect;
+
+export const adminConfig = pgTable("admin_config", {
+  id: varchar("id", { length: 255 }).primaryKey().default(sql`gen_random_uuid()`),
+  adminSecret: text("admin_secret").notNull(),
+  whatsappNumber: varchar("whatsapp_number", { length: 20 }).notNull(),
+  storeName: text("store_name").notNull(),
+  storeDescription: text("store_description"),
+  navbarColor: varchar("navbar_color", { length: 7 }).default("#000000"),
+  footerColor: varchar("footer_color", { length: 7 }).default("#000000"),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const insertAdminConfigSchema = createInsertSchema(adminConfig).omit({
+  id: true,
+  updatedAt: true,
+});
+
+export type InsertAdminConfig = z.infer<typeof insertAdminConfigSchema>;
+export type AdminConfig = typeof adminConfig.$inferSelect;
+
+export const paymentMethods = pgTable("payment_methods", {
+  id: varchar("id", { length: 255 }).primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  number: varchar("number", { length: 50 }),
+  icon: text("icon"),
+  enabled: boolean("enabled").notNull().default(true),
+  position: integer("position").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertPaymentMethodSchema = createInsertSchema(paymentMethods).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertPaymentMethod = z.infer<typeof insertPaymentMethodSchema>;
+export type PaymentMethod = typeof paymentMethods.$inferSelect;
+

@@ -41,15 +41,15 @@
   --color-popover-foreground: hsl(var(--popover-foreground));
 }
 
-/* RETAIL THEME (Saga Falabella Inspired) */
+/* RETAIL THEME (FLABEF Style) */
 :root {
-  /* Retail Green */
-  --primary: 84 81% 41%; /* #8CBF14 Vibrant Green */
-  --primary-foreground: 0 0% 100%;
+  /* Lime Green - Vibrant */
+  --primary: 82 100% 50%; /* #BFFF00 Bright Lime */
+  --primary-foreground: 0 0% 0%;
   
-  /* Stark Black/Dark for contrast */
-  --secondary: 0 0% 9%;
-  --secondary-foreground: 0 0% 100%;
+  /* Stark Black for contrast */
+  --secondary: 0 0% 0%;
+  --secondary-foreground: 82 100% 50%;
   
   --background: 0 0% 100%;
   --foreground: 0 0% 10%;
@@ -63,17 +63,17 @@
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 45%;
   
-  --accent: 84 81% 96%; /* Light green tint */
-  --accent-foreground: 84 81% 30%;
+  --accent: 82 100% 50%; /* Lime Green */
+  --accent-foreground: 0 0% 0%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
   --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 84 81% 41%;
+  --input: 0 0% 96%;
+  --ring: 82 100% 50%;
 
-  --radius: 0.3rem; /* Sharper corners for retail */
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -121,5 +121,29 @@
 @layer utilities {
   .glass-panel {
     @apply bg-white/90 backdrop-blur-sm border border-gray-100 shadow-lg;
+  }
+  
+  .promo-banner {
+    @apply bg-gradient-to-r from-lime-400 to-lime-500 text-black font-bold py-2 text-center text-sm md:text-base;
+  }
+  
+  .hero-badge {
+    @apply inline-block bg-lime-400 text-black px-4 py-2 rounded-full font-bold text-sm mb-4;
+  }
+  
+  .hero-title {
+    @apply text-4xl md:text-6xl font-bold text-white drop-shadow-lg;
+  }
+  
+  .cta-button {
+    @apply bg-lime-400 text-black hover:bg-lime-500 font-bold rounded-full px-8 py-3 transition-all;
+  }
+  
+  .benefit-card {
+    @apply bg-white p-6 text-center rounded-lg shadow-md hover:shadow-lg transition-shadow;
+  }
+  
+  .product-card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-lg transition-all border border-gray-100;
   }
 }

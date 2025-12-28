@@ -252,7 +252,7 @@ export default function AdminDashboard() {
                   {products.map((product) => (
                     <tr key={product.id} className="hover:bg-gray-50">
                       <td className="px-6 py-3 flex items-center gap-3">
-                        <img src={product.image} className="h-10 w-10 rounded object-cover bg-gray-100" alt="" />
+                        <img src={product.image} className="h-10 w-10 rounded object-cover bg-gray-100" alt={product.name} />
                         <span className="font-medium">{product.name}</span>
                       </td>
                       <td className="px-6 py-3 text-muted-foreground">
@@ -265,10 +265,10 @@ export default function AdminDashboard() {
                         </span>
                       </td>
                       <td className="px-6 py-3 text-right">
-                        <Button variant="ghost" size="icon" onClick={() => { setEditingProduct(product); setNewProduct(product); setIsProductDialogOpen(true); }}>
+                        <Button variant="ghost" size="icon" aria-label={`Editar ${product.name}`} title={`Editar ${product.name}`} onClick={() => { setEditingProduct(product); setNewProduct(product); setIsProductDialogOpen(true); }}>
                           <Edit size={16} />
                         </Button>
-                        <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-600 hover:bg-red-50" onClick={() => deleteProduct(product.id)}>
+                        <Button variant="ghost" size="icon" aria-label={`Eliminar ${product.name}`} title={`Eliminar ${product.name}`} className="text-red-500 hover:text-red-600 hover:bg-red-50" onClick={() => deleteProduct(product.id)}>
                           <Trash2 size={16} />
                         </Button>
                       </td>
@@ -341,7 +341,7 @@ export default function AdminDashboard() {
                        <p className="text-xs text-muted-foreground">/{cat.slug}</p>
                      </div>
                    </div>
-                   <Button variant="ghost" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteCategory(cat.id)}>
+                   <Button variant="ghost" size="icon" aria-label={`Eliminar categoría ${cat.name}`} title={`Eliminar ${cat.name}`} className="text-red-500 hover:bg-red-50" onClick={() => deleteCategory(cat.id)}>
                      <Trash2 size={16} />
                    </Button>
                  </div>
